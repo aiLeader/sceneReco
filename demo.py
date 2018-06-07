@@ -3,28 +3,23 @@ from ctpnport import *
 from crnnport import *
 
 
-#ctpn
+# ctpn
 text_detector = ctpnSource()
-#crnn
-model,converter = crnnSource()
+# crnn
+model, converter = crnnSource()
 
-timer=Timer()
+timer = Timer()
 print "\ninput exit break\n"
-while 1 :
+while 1:
     im_name = raw_input("\nplease input file name:")
     if im_name == "exit":
-       break
+        break
     im_path = "./img/" + im_name
     im = cv2.imread(im_path)
     if im is None:
-      continue
+        continue
     timer.tic()
-    img,text_recs = getCharBlock(text_detector,im)
-    crnnRec(model,converter,img,text_recs)
-    print "Time: %f"%timer.toc()
-    cv2.waitKey(0)    
-
-
-
-
-
+    img, text_recs = getCharBlock(text_detector, im)
+    crnnRec(model, converter, img, text_recs)
+    print "Time: %f" % timer.toc()
+    cv2.waitKey(0)
